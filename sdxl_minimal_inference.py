@@ -9,6 +9,9 @@ import random
 from einops import repeat
 import numpy as np
 import torch
+
+from library.device_utils import get_preferred_device_name
+
 try:
     import intel_extension_for_pytorch as ipex
     if torch.xpu.is_available():
@@ -87,7 +90,7 @@ if __name__ == "__main__":
     guidance_scale = 7
     seed = None  # 1
 
-    DEVICE = "cuda"
+    DEVICE = torch.device(get_preferred_device_name("inference"))
     DTYPE = torch.float16  # bfloat16 may work
 
     parser = argparse.ArgumentParser()

@@ -18,7 +18,7 @@ import diffusers
 import numpy as np
 import torch
 
-from library.device_utils import clean_memory
+from library.device_utils import clean_memory, get_preferred_device_name
 
 try:
     import intel_extension_for_pytorch as ipex
@@ -1501,7 +1501,7 @@ def main(args):
     #     scheduler.config.clip_sample = True
 
     # deviceを決定する
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")  # "mps"を考量してない
+    device = torch.device(get_preferred_device_name("inference"))
 
     # custom pipelineをコピったやつを生成する
     if args.vae_slices:

@@ -14,7 +14,9 @@ from torchvision import transforms
 import library.model_util as model_util
 import library.train_util as train_util
 
-DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+from library.device_utils import get_preferred_device_name
+
+DEVICE = torch.device(get_preferred_device_name())
 
 IMAGE_TRANSFORMS = transforms.Compose(
     [

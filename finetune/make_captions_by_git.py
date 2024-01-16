@@ -10,9 +10,9 @@ from transformers import AutoProcessor, AutoModelForCausalLM
 from transformers.generation.utils import GenerationMixin
 
 import library.train_util as train_util
+from library.device_utils import get_preferred_device_name
 
-
-DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+DEVICE = torch.device(get_preferred_device_name())
 
 PATTERN_REPLACE = [
     re.compile(r'(has|with|and) the (words?|letters?|name) (" ?[^"]*"|\w+)( ?(is )?(on|in) (the |her |their |him )?\w+)?'),

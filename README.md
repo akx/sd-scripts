@@ -246,6 +246,10 @@ save_file(state_dict, file)
 
 ControlNet-LLLite, a novel method for ControlNet with SDXL, is added. See [documentation](./docs/train_lllite_README.md) for details.
 
+### Environment variables
+
+You can use the environment variable `SD_DEVICE` to set the Torch device name to prefer for training.
+You can use `SD_INFERENCE_DEVICE` to use a different device for inference.
 
 ## Change History
 
