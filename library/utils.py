@@ -1,5 +1,4 @@
 import threading
-from typing import *
 
 
 def fire_in_thread(f, *args, **kwargs):

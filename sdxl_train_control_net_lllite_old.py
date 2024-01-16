@@ -1,5 +1,4 @@
 import argparse
-import gc
 import json
 import math
 import os
@@ -11,6 +10,9 @@ import toml
 
 from tqdm import tqdm
 import torch
+
+from library.device_utils import clean_memory
+
 try:
     import intel_extension_for_pytorch as ipex
     if torch.xpu.is_available():
@@ -165,9 +167,7 @@ def train(args):
                 accelerator.is_main_process,
             )
         vae.to("cpu")
-        if torch.cuda.is_available():
-            torch.cuda.empty_cache()
-        gc.collect()
+        clean_memory()
 
         accelerator.wait_for_everyone()
 
@@ -266,8 +266,7 @@ def train(args):
         # move Text Encoders for sampling images. Text Encoder doesn't work on CPU with fp16
         text_encoder1.to("cpu", dtype=torch.float32)
         text_encoder2.to("cpu", dtype=torch.float32)
-        if torch.cuda.is_available():
-            torch.cuda.empty_cache()
+        clean_memory()
     else:
         # make sure Text Encoders are on GPU
         text_encoder1.to(accelerator.device)
