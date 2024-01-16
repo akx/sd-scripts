@@ -7,7 +7,7 @@ import os
 import cv2
 from diffusers import AutoencoderKL
 
-from typing import Dict, List
+from typing import List
 import numpy as np
 
 import torch

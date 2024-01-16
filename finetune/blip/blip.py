@@ -13,7 +13,6 @@ from transformers import BertTokenizer
 
 import torch
 from torch import nn
-import torch.nn.functional as F
 
 import os
 from urllib.parse import urlparse

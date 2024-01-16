@@ -31,7 +31,6 @@ import toml
 
 from tqdm import tqdm
 import torch
-from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.optim import Optimizer
 from torchvision import transforms
 from transformers import CLIPTokenizer, CLIPTextModel, CLIPTextModelWithProjection
@@ -91,7 +90,6 @@ STEP_DIFFUSERS_DIR_NAME = "{}-step{:08d}"
 IMAGE_EXTENSIONS = [".png", ".jpg", ".jpeg", ".webp", ".bmp", ".PNG", ".JPG", ".JPEG", ".WEBP", ".BMP"]
 
 try:
-    import pillow_avif
 
     IMAGE_EXTENSIONS.extend([".avif", ".AVIF"])
 except:
@@ -99,7 +97,6 @@ except:
 
 # JPEG-XL on Linux
 try:
-    from jxlpy import JXLImagePlugin
 
     IMAGE_EXTENSIONS.extend([".jxl", ".JXL"])
 except:
@@ -107,7 +104,6 @@ except:
 
 # JPEG-XL on Windows
 try:
-    import pillow_jxl
 
     IMAGE_EXTENSIONS.extend([".jxl", ".JXL"])
 except:

@@ -11,7 +11,6 @@ import toml
 
 from tqdm import tqdm
 import torch
-from torch.nn.parallel import DistributedDataParallel as DDP
 
 from library.device_utils import clean_memory, init_ipex
 init_ipex()

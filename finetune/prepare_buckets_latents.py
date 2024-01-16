@@ -7,7 +7,6 @@ from typing import List
 from tqdm import tqdm
 import numpy as np
 from PIL import Image
-import cv2
 import torch
 from torchvision import transforms
 

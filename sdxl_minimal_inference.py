@@ -17,9 +17,8 @@ from transformers import CLIPTokenizer
 from diffusers import EulerDiscreteScheduler
 from PIL import Image
 import open_clip
-from safetensors.torch import load_file
 
-from library import model_util, sdxl_model_util
+from library import sdxl_model_util
 import networks.lora as lora
 
 # scheduler: このあたりの設定はSD1/2と同じでいいらしい

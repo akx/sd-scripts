@@ -1,15 +1,12 @@
 import itertools
-import json
 from typing import Any, List, NamedTuple, Optional, Tuple, Union, Callable
 import glob
 import importlib
 import inspect
 import time
-import zipfile
 from diffusers.utils import deprecate
 from diffusers.configuration_utils import FrozenDict
 import argparse
-import math
 import os
 import random
 import re
@@ -21,7 +18,6 @@ import torch
 from library.device_utils import clean_memory, get_preferred_device_name, init_ipex
 init_ipex()
 
-import torchvision
 from diffusers import (
     AutoencoderKL,
     DDPMScheduler,
@@ -35,12 +31,9 @@ from diffusers import (
     HeunDiscreteScheduler,
     KDPM2DiscreteScheduler,
     KDPM2AncestralDiscreteScheduler,
-    # UNet2DConditionModel,
-    StableDiffusionPipeline,
 )
 from einops import rearrange
 from tqdm import tqdm
-from torchvision import transforms
 from transformers import CLIPTextModel, CLIPTokenizer, CLIPVisionModelWithProjection, CLIPImageProcessor
 import PIL
 from PIL import Image
@@ -50,7 +43,6 @@ import library.model_util as model_util
 import library.train_util as train_util
 import library.sdxl_model_util as sdxl_model_util
 import library.sdxl_train_util as sdxl_train_util
-from networks.lora import LoRANetwork
 from library.sdxl_original_unet import InferSdxlUNet2DConditionModel
 from library.original_unet import FlashAttentionFunction
 from networks.control_net_lllite import ControlNetLLLite

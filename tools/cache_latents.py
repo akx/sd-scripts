@@ -1,7 +1,6 @@
 # latentsのdiskへの事前キャッシュを行う / cache latents to disk
 
 import argparse
-import math
 from multiprocessing import Value
 import os
 

@@ -3,7 +3,7 @@
 
 import os
 import re
-from typing import Optional, List, Type
+from typing import Optional, List
 import torch
 from library import sdxl_original_unet
 

@@ -2,13 +2,10 @@
 # training code for ControlNet-LLLite with passing cond_image to U-Net's forward
 
 import argparse
-import json
 import math
 import os
 import random
-import time
 from multiprocessing import Value
-from types import SimpleNamespace
 import toml
 
 from tqdm import tqdm
@@ -16,14 +13,11 @@ import torch
 
 from library.device_utils import clean_memory, init_ipex
 init_ipex()
-from torch.nn.parallel import DistributedDataParallel as DDP
 from accelerate.utils import set_seed
 import accelerate
-from diffusers import DDPMScheduler, ControlNetModel
-from safetensors.torch import load_file
-from library import sai_model_spec, sdxl_model_util, sdxl_original_unet, sdxl_train_util
+from diffusers import DDPMScheduler
+from library import sai_model_spec, sdxl_model_util, sdxl_train_util
 
-import library.model_util as model_util
 import library.train_util as train_util
 import library.config_util as config_util
 from library.config_util import (
@@ -36,8 +30,6 @@ from library.custom_train_functions import (
     add_v_prediction_like_loss,
     apply_snr_weight,
     prepare_scheduler_for_custom_training,
-    pyramid_noise_like,
-    apply_noise_offset,
     scale_v_prediction_loss_like_noise_prediction,
     apply_debiased_estimation,
 )

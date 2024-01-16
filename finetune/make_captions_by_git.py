@@ -7,7 +7,6 @@ from PIL import Image
 from tqdm import tqdm
 import torch
 from transformers import AutoProcessor, AutoModelForCausalLM
-from transformers.generation.utils import GenerationMixin
 
 import library.train_util as train_util
 from library.device_utils import get_preferred_device_name

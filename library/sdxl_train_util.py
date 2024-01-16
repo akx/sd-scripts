@@ -4,7 +4,6 @@ import os
 from typing import Optional
 import torch
 from accelerate import init_empty_weights
-from tqdm import tqdm
 from transformers import CLIPTokenizer
 from library import model_util, sdxl_model_util, train_util, sdxl_original_unet
 from library.sdxl_lpw_stable_diffusion import SdxlStableDiffusionLongPromptWeightingPipeline

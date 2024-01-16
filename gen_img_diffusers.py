@@ -47,17 +47,14 @@ VGG(
 """
 
 import itertools
-import json
 from typing import Any, List, NamedTuple, Optional, Tuple, Union, Callable
 import glob
 import importlib
 import inspect
 import time
-import zipfile
 from diffusers.utils import deprecate
 from diffusers.configuration_utils import FrozenDict
 import argparse
-import math
 import os
 import random
 import re
@@ -88,7 +85,7 @@ from diffusers import (
 from einops import rearrange
 from tqdm import tqdm
 from torchvision import transforms
-from transformers import CLIPTextModel, CLIPTokenizer, CLIPModel, CLIPTextConfig
+from transformers import CLIPTextModel, CLIPTokenizer, CLIPModel
 import PIL
 from PIL import Image
 from PIL.PngImagePlugin import PngInfo

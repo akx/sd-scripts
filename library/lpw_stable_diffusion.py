@@ -11,10 +11,9 @@ import torch
 from packaging import version
 from transformers import CLIPFeatureExtractor, CLIPTextModel, CLIPTokenizer, CLIPVisionModelWithProjection
 
-import diffusers
 from diffusers import SchedulerMixin, StableDiffusionPipeline
 from diffusers.models import AutoencoderKL, UNet2DConditionModel
-from diffusers.pipelines.stable_diffusion import StableDiffusionPipelineOutput, StableDiffusionSafetyChecker
+from diffusers.pipelines.stable_diffusion import StableDiffusionSafetyChecker
 from diffusers.utils import logging
 
 

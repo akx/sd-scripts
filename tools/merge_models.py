@@ -3,7 +3,7 @@ import os
 
 import torch
 from safetensors import safe_open
-from safetensors.torch import load_file, save_file
+from safetensors.torch import save_file
 from tqdm import tqdm
 
 

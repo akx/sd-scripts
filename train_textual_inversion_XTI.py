@@ -1,4 +1,3 @@
-import importlib
 import argparse
 import math
 import os
@@ -11,9 +10,7 @@ import torch
 from library.device_utils import clean_memory, init_ipex
 init_ipex()
 from accelerate.utils import set_seed
-import diffusers
 from diffusers import DDPMScheduler
-import library
 
 import library.train_util as train_util
 import library.huggingface_util as huggingface_util
@@ -26,8 +23,6 @@ import library.custom_train_functions as custom_train_functions
 from library.custom_train_functions import (
     apply_snr_weight,
     prepare_scheduler_for_custom_training,
-    pyramid_noise_like,
-    apply_noise_offset,
     scale_v_prediction_loss_like_noise_prediction,
     apply_debiased_estimation,
 )

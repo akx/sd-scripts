@@ -2,7 +2,6 @@
 # (c) 2022 Kohya S. @kohya_ss
 
 import argparse
-import glob
 import os
 import json
 import re

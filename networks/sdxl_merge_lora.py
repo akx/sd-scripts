@@ -6,7 +6,6 @@ import torch
 from safetensors.torch import load_file, save_file
 from tqdm import tqdm
 from library import sai_model_spec, sdxl_model_util, train_util
-import library.model_util as model_util
 import lora
 
 

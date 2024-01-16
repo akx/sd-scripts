@@ -1,7 +1,6 @@
 # text encoder出力のdiskへの事前キャッシュを行う / cache text encoder outputs to disk in advance
 
 import argparse
-import math
 from multiprocessing import Value
 import os
 
