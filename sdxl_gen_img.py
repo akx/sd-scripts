@@ -18,17 +18,9 @@ import diffusers
 import numpy as np
 import torch
 
-from library.device_utils import clean_memory, get_preferred_device_name
+from library.device_utils import clean_memory, get_preferred_device_name, init_ipex
+init_ipex()
 
-try:
-    import intel_extension_for_pytorch as ipex
-
-    if torch.xpu.is_available():
-        from library.ipex import ipex_init
-
-        ipex_init()
-except Exception:
-    pass
 import torchvision
 from diffusers import (
     AutoencoderKL,
