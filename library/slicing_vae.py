@@ -481,7 +481,7 @@ class SlicingDecoder(nn.Module):
 
     def upsample_forward(self, _self, num_slices, hidden_states, output_size=None):
         assert hidden_states.shape[1] == _self.channels
-        assert _self.use_conv_transpose == False and _self.use_conv
+        assert _self.use_conv_transpose is False and _self.use_conv
 
         org_dtype = hidden_states.dtype
         org_device = hidden_states.device
