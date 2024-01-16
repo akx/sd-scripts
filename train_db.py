@@ -293,7 +293,6 @@ def train(args):
                     else:
                         latents = vae.encode(batch["images"].to(dtype=weight_dtype)).latent_dist.sample()
                     latents = latents * 0.18215
-                b_size = latents.shape[0]
 
                 # Get the text embedding for conditioning
                 with torch.set_grad_enabled(global_step < args.stop_text_encoder_training):

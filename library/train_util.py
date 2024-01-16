@@ -1843,7 +1843,6 @@ class ControlNetDataset(BaseDataset):
 
             target_size_hw = example["target_sizes_hw"][i]
             original_size_hw = example["original_sizes_hw"][i]
-            crop_top_left = example["crop_top_lefts"][i]
             flipped = example["flippeds"][i]
             cond_img = load_image(image_info.cond_img_path)
 

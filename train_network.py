@@ -743,7 +743,6 @@ class NetworkTrainer:
                                 accelerator.print("NaN found in latents, replacing with zeros")
                                 latents = torch.nan_to_num(latents, 0, out=latents)
                         latents = latents * self.vae_scale_factor
-                    b_size = latents.shape[0]
 
                     with torch.set_grad_enabled(train_text_encoder), accelerator.autocast():
                         # Get the text embedding for conditioning

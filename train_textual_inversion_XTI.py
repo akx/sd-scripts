@@ -240,17 +240,10 @@ def train(args):
             captions.append(tmpl.format(replace_to))
         train_dataset_group.add_replacement("", captions)
 
-        if args.num_vectors_per_token > 1:
-            prompt_replacement = (args.token_string, replace_to)
-        else:
-            prompt_replacement = None
     else:
         if args.num_vectors_per_token > 1:
             replace_to = " ".join(token_strings)
             train_dataset_group.add_replacement(args.token_string, replace_to)
-            prompt_replacement = (args.token_string, replace_to)
-        else:
-            prompt_replacement = None
 
     if args.debug_dataset:
         train_util.debug_dataset(train_dataset_group, show_input_ids=True)
@@ -423,7 +416,6 @@ def train(args):
                         # latentに変換
                         latents = vae.encode(batch["images"].to(dtype=weight_dtype)).latent_dist.sample()
                     latents = latents * 0.18215
-                b_size = latents.shape[0]
 
                 # Get the text embedding for conditioning
                 input_ids = batch["input_ids"].to(accelerator.device)

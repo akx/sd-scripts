@@ -248,7 +248,7 @@ class TextualInversionTrainer:
             embeddings_list = self.load_weights(args.weights)
             assert len(token_ids) == len(
                 embeddings_list[0]
-            ), f"num_vectors_per_token is mismatch for weights / 指定した重みとnum_vectors_per_tokenの値が異なります: {len(embeddings)}"
+            ), f"num_vectors_per_token is mismatch for weights / 指定した重みとnum_vectors_per_tokenの値が異なります"
             # accelerator.print(token_ids, embeddings.size())
             for token_ids, embeddings, token_embeds in zip(token_ids_list, embeddings_list, token_embeds_list):
                 for token_id, embedding in zip(token_ids, embeddings):

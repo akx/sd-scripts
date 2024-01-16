@@ -1894,7 +1894,6 @@ def main(args):
             network.set_region(i, i == len(networks) - 1, mask)
         mask_images = None
 
-    prev_image = None  # for VGG16 guided
     if args.guide_image_path is not None:
         print(f"load image for ControlNet guidance: {args.guide_image_path}")
         guide_images = []
@@ -2528,7 +2527,7 @@ def main(args):
 
                 batch_data.append(b1)
                 if len(batch_data) == args.batch_size:
-                    prev_image = process_batch(batch_data, highres_fix)[0]
+                    process_batch(batch_data, highres_fix)
                     batch_data.clear()
 
                 global_step += 1
