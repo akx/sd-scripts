@@ -1,9 +1,10 @@
 import os
+from functools import cache
+
+import diffusers  #0.24.0 # pylint: disable=import-error
 import torch
-import diffusers #0.24.0 # pylint: disable=import-error
 from diffusers.models.attention_processor import Attention
 from diffusers.utils import USE_PEFT_BACKEND
-from functools import cache
 
 # pylint: disable=protected-access, missing-function-docstring, line-too-long
 

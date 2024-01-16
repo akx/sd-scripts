@@ -1,12 +1,12 @@
 import argparse
 import os
 import re
-
 from pathlib import Path
+
+import torch
 from PIL import Image
 from tqdm import tqdm
-import torch
-from transformers import AutoProcessor, AutoModelForCausalLM
+from transformers import AutoModelForCausalLM, AutoProcessor
 
 import library.train_util as train_util
 from library.device_utils import get_preferred_device_name

@@ -1,12 +1,13 @@
 
 
-from tqdm import tqdm
-import library.train_util as train_util
 import argparse
-from transformers import CLIPTokenizer
-import torch
 
 import lora
+import torch
+from tqdm import tqdm
+from transformers import CLIPTokenizer
+
+import library.train_util as train_util
 from library.device_utils import get_preferred_device_name
 
 TOKENIZER_PATH = "openai/clip-vit-large-patch14"

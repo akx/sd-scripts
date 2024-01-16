@@ -1,5 +1,6 @@
-import json
 import argparse
+import json
+
 from safetensors import safe_open
 
 parser = argparse.ArgumentParser()

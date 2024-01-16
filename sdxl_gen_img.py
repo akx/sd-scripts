@@ -1,50 +1,56 @@
-import itertools
-from typing import Any, List, NamedTuple, Optional, Tuple, Union, Callable
+import argparse
 import glob
 import importlib
 import inspect
-import time
-from diffusers.utils import deprecate
-from diffusers.configuration_utils import FrozenDict
-import argparse
+import itertools
 import os
 import random
 import re
+import time
+from typing import Any, Callable, List, NamedTuple, Optional, Tuple, Union
 
 import diffusers
 import numpy as np
 import torch
+from diffusers.configuration_utils import FrozenDict
+from diffusers.utils import deprecate
 
 from library.device_utils import clean_memory, get_preferred_device_name, init_ipex
+
 init_ipex()
 
+import PIL
 from diffusers import (
     AutoencoderKL,
+    DDIMScheduler,
     DDPMScheduler,
-    EulerAncestralDiscreteScheduler,
     DPMSolverMultistepScheduler,
     DPMSolverSinglestepScheduler,
-    LMSDiscreteScheduler,
-    PNDMScheduler,
-    DDIMScheduler,
+    EulerAncestralDiscreteScheduler,
     EulerDiscreteScheduler,
     HeunDiscreteScheduler,
-    KDPM2DiscreteScheduler,
     KDPM2AncestralDiscreteScheduler,
+    KDPM2DiscreteScheduler,
+    LMSDiscreteScheduler,
+    PNDMScheduler,
 )
 from einops import rearrange
-from tqdm import tqdm
-from transformers import CLIPTextModel, CLIPTokenizer, CLIPVisionModelWithProjection, CLIPImageProcessor
-import PIL
 from PIL import Image
 from PIL.PngImagePlugin import PngInfo
+from tqdm import tqdm
+from transformers import (
+    CLIPImageProcessor,
+    CLIPTextModel,
+    CLIPTokenizer,
+    CLIPVisionModelWithProjection,
+)
 
 import library.model_util as model_util
-import library.train_util as train_util
 import library.sdxl_model_util as sdxl_model_util
 import library.sdxl_train_util as sdxl_train_util
-from library.sdxl_original_unet import InferSdxlUNet2DConditionModel
+import library.train_util as train_util
 from library.original_unet import FlashAttentionFunction
+from library.sdxl_original_unet import InferSdxlUNet2DConditionModel
 from networks.control_net_lllite import ControlNetLLLite
 
 # scheduler:

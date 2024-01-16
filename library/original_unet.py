@@ -109,10 +109,11 @@ v2.1
 import math
 from types import SimpleNamespace
 from typing import Dict, Optional, Tuple, Union
+
 import torch
+from einops import rearrange
 from torch import nn
 from torch.nn import functional as F
-from einops import rearrange
 
 BLOCK_OUT_CHANNELS: Tuple[int] = (320, 640, 1280, 1280)
 TIMESTEP_INPUT_DIM = BLOCK_OUT_CHANNELS[0]

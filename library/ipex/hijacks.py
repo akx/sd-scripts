@@ -1,4 +1,5 @@
 import contextlib
+
 import torch
 
 # pylint: disable=protected-access, missing-function-docstring, line-too-long, unnecessary-lambda, no-else-return
@@ -57,8 +58,10 @@ if torch.xpu.has_fp64_dtype():
 else:
     # 32 bit attention workarounds for Alchemist:
     try:
+        from .attention import (
+            scaled_dot_product_attention_32_bit as original_scaled_dot_product_attention,
+        )
         from .attention import torch_bmm_32_bit as original_torch_bmm
-        from .attention import scaled_dot_product_attention_32_bit as original_scaled_dot_product_attention
     except Exception: # pylint: disable=broad-exception-caught
         original_torch_bmm = torch.bmm
         original_scaled_dot_product_attention = torch.nn.functional.scaled_dot_product_attention

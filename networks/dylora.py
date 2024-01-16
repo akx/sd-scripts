@@ -13,6 +13,7 @@ import math
 import os
 import random
 from typing import List
+
 import torch
 from torch import nn
 
@@ -429,6 +430,7 @@ class DyLoRANetwork(torch.nn.Module):
 
         if os.path.splitext(file)[1] == ".safetensors":
             from safetensors.torch import save_file
+
             from library import train_util
 
             # Precalculate model hashes to save time on indexing

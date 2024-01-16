@@ -8,18 +8,16 @@ from typing import Callable, List, Optional, Union
 import numpy as np
 import PIL.Image
 import torch
-from packaging import version
-from tqdm import tqdm
-from transformers import CLIPFeatureExtractor, CLIPTextModel, CLIPTokenizer
-
 from diffusers import SchedulerMixin, StableDiffusionPipeline
 from diffusers.models import AutoencoderKL, UNet2DConditionModel
 from diffusers.pipelines.stable_diffusion import StableDiffusionSafetyChecker
 from diffusers.utils import logging
+from packaging import version
 from PIL import Image
+from tqdm import tqdm
+from transformers import CLIPFeatureExtractor, CLIPTextModel, CLIPTokenizer
 
 from library import sdxl_model_util, sdxl_train_util, train_util
-
 
 try:
     from diffusers.utils import PIL_INTERPOLATION

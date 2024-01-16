@@ -4,9 +4,11 @@
 
 import argparse
 import os
+
 import torch
-from safetensors.torch import load_file, save_file, safe_open
-from library import train_util, model_util
+from safetensors.torch import load_file, safe_open, save_file
+
+from library import model_util, train_util
 
 
 def load_state_dict(file_name):

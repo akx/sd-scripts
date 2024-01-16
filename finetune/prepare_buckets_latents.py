@@ -1,18 +1,17 @@
 import argparse
-import os
 import json
-
+import os
 from pathlib import Path
 from typing import List
-from tqdm import tqdm
+
 import numpy as np
-from PIL import Image
 import torch
+from PIL import Image
 from torchvision import transforms
+from tqdm import tqdm
 
 import library.model_util as model_util
 import library.train_util as train_util
-
 from library.device_utils import get_preferred_device_name
 
 DEVICE = torch.device(get_preferred_device_name())

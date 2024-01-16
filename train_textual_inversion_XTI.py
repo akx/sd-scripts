@@ -1,33 +1,34 @@
 import argparse
 import math
 import os
-import toml
 from multiprocessing import Value
 
-from tqdm import tqdm
+import toml
 import torch
+from tqdm import tqdm
 
 from library.device_utils import clean_memory, init_ipex
+
 init_ipex()
 from accelerate.utils import set_seed
 from diffusers import DDPMScheduler
 
-import library.train_util as train_util
-import library.huggingface_util as huggingface_util
 import library.config_util as config_util
-from library.config_util import (
-    ConfigSanitizer,
-    BlueprintGenerator,
-)
 import library.custom_train_functions as custom_train_functions
+import library.huggingface_util as huggingface_util
+import library.original_unet as original_unet
+import library.train_util as train_util
+from library.config_util import (
+    BlueprintGenerator,
+    ConfigSanitizer,
+)
 from library.custom_train_functions import (
+    apply_debiased_estimation,
     apply_snr_weight,
     prepare_scheduler_for_custom_training,
     scale_v_prediction_loss_like_noise_prediction,
-    apply_debiased_estimation,
 )
-import library.original_unet as original_unet
-from XTI_hijack import unet_forward_XTI, downblock_forward_XTI, upblock_forward_XTI
+from XTI_hijack import downblock_forward_XTI, unet_forward_XTI, upblock_forward_XTI
 
 imagenet_templates_small = [
     "a photo of a {}",

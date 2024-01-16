@@ -1,7 +1,9 @@
 import torch
+
 from library.device_utils import init_ipex
+
 init_ipex()
-from typing import Union, Optional, Dict, Tuple
+from typing import Dict, Optional, Tuple, Union
 
 from library.original_unet import SampleOutput
 

@@ -8,13 +8,14 @@
 # v4: add multiple faces extraction and min/max size
 
 import argparse
-import math
-import cv2
 import glob
+import math
 import os
+
+import cv2
+import numpy as np
 from anime_face_detector import create_detector
 from tqdm import tqdm
-import numpy as np
 
 KP_REYE = 11
 KP_LEYE = 19

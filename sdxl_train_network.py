@@ -1,10 +1,12 @@
 import argparse
+
 import torch
 
 from library.device_utils import clean_memory, init_ipex
+
 init_ipex()
-from library import sdxl_model_util, sdxl_train_util, train_util
 import train_network
+from library import sdxl_model_util, sdxl_train_util, train_util
 
 
 class SdxlNetworkTrainer(train_network.NetworkTrainer):

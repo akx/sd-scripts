@@ -5,12 +5,12 @@
 
 import math
 import os
+import re
 from typing import Dict, List, Optional, Tuple, Type, Union
+
+import torch
 from diffusers import AutoencoderKL
 from transformers import CLIPTextModel
-import torch
-import re
-
 
 RE_UPDOWN = re.compile(r"(up|down)_blocks_(\d+)_(resnets|upsamplers|downsamplers|attentions)_(\d+)_")
 
@@ -1087,6 +1087,7 @@ class LoRANetwork(torch.nn.Module):
 
         if os.path.splitext(file)[1] == ".safetensors":
             from safetensors.torch import save_file
+
             from library import train_util
 
             # Precalculate model hashes to save time on indexing

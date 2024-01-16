@@ -1,6 +1,7 @@
 import os
-import torch
 from functools import cache
+
+import torch
 
 # pylint: disable=protected-access, missing-function-docstring, line-too-long
 

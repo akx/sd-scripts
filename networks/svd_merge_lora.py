@@ -1,11 +1,12 @@
 import argparse
 import os
 import time
+
 import torch
 from safetensors.torch import load_file, save_file
 from tqdm import tqdm
-from library import sai_model_spec, train_util
 
+from library import sai_model_spec, train_util
 
 CLAMP_QUANTILE = 0.99
 

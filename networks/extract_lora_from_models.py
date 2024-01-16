@@ -6,12 +6,13 @@ import argparse
 import json
 import os
 import time
+
+import lora
 import torch
 from safetensors.torch import save_file
 from tqdm import tqdm
-from library import sai_model_spec, model_util, sdxl_model_util
-import lora
 
+from library import model_util, sai_model_spec, sdxl_model_util
 
 # CLAMP_QUANTILE = 0.99
 # MIN_DIFF = 1e-1

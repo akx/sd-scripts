@@ -1,13 +1,18 @@
+from typing import List
+
 import torch
 from accelerate import init_empty_weights
 from accelerate.utils.modeling import set_module_tensor_to_device
-from safetensors.torch import load_file, save_file
-from transformers import CLIPTextModel, CLIPTextConfig, CLIPTextModelWithProjection, CLIPTokenizer
-from typing import List
 from diffusers import AutoencoderKL, EulerDiscreteScheduler, UNet2DConditionModel
-from library import model_util
-from library import sdxl_original_unet
+from safetensors.torch import load_file, save_file
+from transformers import (
+    CLIPTextConfig,
+    CLIPTextModel,
+    CLIPTextModelWithProjection,
+    CLIPTokenizer,
+)
 
+from library import model_util, sdxl_original_unet
 
 VAE_SCALE_FACTOR = 0.13025
 MODEL_VERSION_SDXL_BASE_V1_0 = "sdxl_base_v1-0"

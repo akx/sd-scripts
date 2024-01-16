@@ -2,11 +2,12 @@ import argparse
 import os
 
 import torch
-from library.device_utils import init_ipex
-init_ipex()
-from library import sdxl_model_util, sdxl_train_util, train_util
 
+from library.device_utils import init_ipex
+
+init_ipex()
 import train_textual_inversion
+from library import sdxl_model_util, sdxl_train_util, train_util
 
 
 class SdxlTextualInversionTrainer(train_textual_inversion.TextualInversionTrainer):

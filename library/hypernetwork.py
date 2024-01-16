@@ -4,7 +4,7 @@ from diffusers.models.attention_processor import (
     Attention,
     AttnProcessor2_0,
     SlicedAttnProcessor,
-    XFormersAttnProcessor
+    XFormersAttnProcessor,
 )
 
 try:

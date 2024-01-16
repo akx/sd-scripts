@@ -2,12 +2,16 @@ import argparse
 import math
 import os
 from typing import Optional
+
 import torch
 from accelerate import init_empty_weights
 from transformers import CLIPTokenizer
-from library import model_util, sdxl_model_util, train_util, sdxl_original_unet
-from library.sdxl_lpw_stable_diffusion import SdxlStableDiffusionLongPromptWeightingPipeline
+
+from library import model_util, sdxl_model_util, sdxl_original_unet, train_util
 from library.device_utils import clean_memory
+from library.sdxl_lpw_stable_diffusion import (
+    SdxlStableDiffusionLongPromptWeightingPipeline,
+)
 
 TOKENIZER1_PATH = "openai/clip-vit-large-patch14"
 TOKENIZER2_PATH = "laion/CLIP-ViT-bigG-14-laion2B-39B-b160k"

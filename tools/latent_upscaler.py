@@ -4,16 +4,15 @@
 import argparse
 import glob
 import os
-import cv2
-from diffusers import AutoencoderKL
-
 from typing import List
-import numpy as np
 
+import cv2
+import numpy as np
 import torch
+from diffusers import AutoencoderKL
+from PIL import Image
 from torch import nn
 from tqdm import tqdm
-from PIL import Image
 
 from library.device_utils import get_preferred_device_name
 

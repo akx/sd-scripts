@@ -3,11 +3,13 @@
 # Thanks to cloneofsimo
 
 import argparse
-import torch
-from safetensors.torch import load_file, save_file, safe_open
-from tqdm import tqdm
-from library import train_util, model_util
+
 import numpy as np
+import torch
+from safetensors.torch import load_file, safe_open, save_file
+from tqdm import tqdm
+
+from library import model_util, train_util
 
 MIN_SV = 1e-6
 

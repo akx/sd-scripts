@@ -46,59 +46,62 @@ VGG(
 )
 """
 
-import itertools
-from typing import Any, List, NamedTuple, Optional, Tuple, Union, Callable
+import argparse
 import glob
 import importlib
 import inspect
-import time
-from diffusers.utils import deprecate
-from diffusers.configuration_utils import FrozenDict
-import argparse
+import itertools
 import os
 import random
 import re
+import time
+from typing import Any, Callable, List, NamedTuple, Optional, Tuple, Union
 
 import diffusers
 import numpy as np
 import torch
+from diffusers.configuration_utils import FrozenDict
+from diffusers.utils import deprecate
 
 from library.device_utils import clean_memory, get_preferred_device_name, init_ipex
+
 init_ipex()
+import PIL
 import torchvision
 from diffusers import (
     AutoencoderKL,
+    DDIMScheduler,
     DDPMScheduler,
-    EulerAncestralDiscreteScheduler,
     DPMSolverMultistepScheduler,
     DPMSolverSinglestepScheduler,
-    LMSDiscreteScheduler,
-    PNDMScheduler,
-    DDIMScheduler,
+    EulerAncestralDiscreteScheduler,
     EulerDiscreteScheduler,
     HeunDiscreteScheduler,
-    KDPM2DiscreteScheduler,
     KDPM2AncestralDiscreteScheduler,
+    KDPM2DiscreteScheduler,
+    LMSDiscreteScheduler,
+    PNDMScheduler,
     # UNet2DConditionModel,
     StableDiffusionPipeline,
 )
 from einops import rearrange
-from tqdm import tqdm
-from torchvision import transforms
-from transformers import CLIPTextModel, CLIPTokenizer, CLIPModel
-import PIL
 from PIL import Image
 from PIL.PngImagePlugin import PngInfo
+from torchvision import transforms
+from tqdm import tqdm
+from transformers import CLIPModel, CLIPTextModel, CLIPTokenizer
 
 import library.model_util as model_util
 import library.train_util as train_util
-from networks.lora import LoRANetwork
 import tools.original_control_net as original_control_net
+from library.original_unet import (
+    FlashAttentionFunction,
+    InferUNet2DConditionModel,
+    UNet2DConditionModel,
+)
+from networks.lora import LoRANetwork
 from tools.original_control_net import ControlNetInfo
-from library.original_unet import UNet2DConditionModel, InferUNet2DConditionModel
-from library.original_unet import FlashAttentionFunction
-
-from XTI_hijack import unet_forward_XTI, downblock_forward_XTI, upblock_forward_XTI
+from XTI_hijack import downblock_forward_XTI, unet_forward_XTI, upblock_forward_XTI
 
 # scheduler:
 SCHEDULER_LINEAR_START = 0.00085

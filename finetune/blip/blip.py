@@ -5,18 +5,16 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  * By Junnan Li
 '''
-# from models.vit import VisionTransformer, interpolate_pos_embed
-# from models.med import BertConfig, BertModel, BertLMHeadModel
-from blip.vit import VisionTransformer, interpolate_pos_embed
-from blip.med import BertConfig, BertModel, BertLMHeadModel
-from transformers import BertTokenizer
-
-import torch
-from torch import nn
-
 import os
 from urllib.parse import urlparse
+
+import torch
+from blip.med import BertConfig, BertLMHeadModel, BertModel
+from blip.vit import VisionTransformer, interpolate_pos_embed
 from timm.models.hub import download_cached_file
+from torch import nn
+from transformers import BertTokenizer
+
 
 class BLIP_Base(nn.Module):
     def __init__(self,                 
