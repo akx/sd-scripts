@@ -11,15 +11,8 @@ from typing import Any, Callable, List, NamedTuple, Optional, Tuple, Union
 
 import diffusers
 import numpy as np
-import torch
-from diffusers.configuration_utils import FrozenDict
-from diffusers.utils import deprecate
-
-from library.device_utils import clean_memory, get_preferred_device_name, init_ipex
-
-init_ipex()
-
 import PIL
+import torch
 from diffusers import (
     AutoencoderKL,
     DDIMScheduler,
@@ -34,6 +27,8 @@ from diffusers import (
     LMSDiscreteScheduler,
     PNDMScheduler,
 )
+from diffusers.configuration_utils import FrozenDict
+from diffusers.utils import deprecate
 from einops import rearrange
 from PIL import Image
 from PIL.PngImagePlugin import PngInfo
@@ -49,10 +44,12 @@ import library.model_util as model_util
 import library.sdxl_model_util as sdxl_model_util
 import library.sdxl_train_util as sdxl_train_util
 import library.train_util as train_util
+from library.device_utils import clean_memory, get_preferred_device_name, init_ipex
 from library.original_unet import FlashAttentionFunction
 from library.sdxl_original_unet import InferSdxlUNet2DConditionModel
 from networks.control_net_lllite import ControlNetLLLite
 
+init_ipex()
 # scheduler:
 SCHEDULER_LINEAR_START = 0.00085
 SCHEDULER_LINEAR_END = 0.0120

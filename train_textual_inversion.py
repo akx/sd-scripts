@@ -5,13 +5,9 @@ from multiprocessing import Value
 
 import toml
 import torch
-from tqdm import tqdm
-
-from library.device_utils import clean_memory, init_ipex
-
-init_ipex()
 from accelerate.utils import set_seed
 from diffusers import DDPMScheduler
+from tqdm import tqdm
 from transformers import CLIPTokenizer
 
 import library.config_util as config_util
@@ -30,6 +26,9 @@ from library.custom_train_functions import (
     prepare_scheduler_for_custom_training,
     scale_v_prediction_loss_like_noise_prediction,
 )
+from library.device_utils import clean_memory, init_ipex
+
+init_ipex()
 
 imagenet_templates_small = [
     "a photo of a {}",

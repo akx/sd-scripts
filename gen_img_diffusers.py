@@ -59,14 +59,8 @@ from typing import Any, Callable, List, NamedTuple, Optional, Tuple, Union
 
 import diffusers
 import numpy as np
-import torch
-from diffusers.configuration_utils import FrozenDict
-from diffusers.utils import deprecate
-
-from library.device_utils import clean_memory, get_preferred_device_name, init_ipex
-
-init_ipex()
 import PIL
+import torch
 import torchvision
 from diffusers import (
     AutoencoderKL,
@@ -84,6 +78,8 @@ from diffusers import (
     # UNet2DConditionModel,
     StableDiffusionPipeline,
 )
+from diffusers.configuration_utils import FrozenDict
+from diffusers.utils import deprecate
 from einops import rearrange
 from PIL import Image
 from PIL.PngImagePlugin import PngInfo
@@ -94,6 +90,7 @@ from transformers import CLIPModel, CLIPTextModel, CLIPTokenizer
 import library.model_util as model_util
 import library.train_util as train_util
 import tools.original_control_net as original_control_net
+from library.device_utils import clean_memory, get_preferred_device_name, init_ipex
 from library.original_unet import (
     FlashAttentionFunction,
     InferUNet2DConditionModel,
@@ -103,6 +100,7 @@ from networks.lora import LoRANetwork
 from tools.original_control_net import ControlNetInfo
 from XTI_hijack import downblock_forward_XTI, unet_forward_XTI, upblock_forward_XTI
 
+init_ipex()
 # scheduler:
 SCHEDULER_LINEAR_START = 0.00085
 SCHEDULER_LINEAR_END = 0.0120

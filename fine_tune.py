@@ -8,14 +8,9 @@ from multiprocessing import Value
 
 import toml
 import torch
-from tqdm import tqdm
-
-from library.device_utils import clean_memory, init_ipex
-
-init_ipex()
-
 from accelerate.utils import set_seed
 from diffusers import DDPMScheduler
+from tqdm import tqdm
 
 import library.config_util as config_util
 import library.custom_train_functions as custom_train_functions
@@ -31,7 +26,9 @@ from library.custom_train_functions import (
     prepare_scheduler_for_custom_training,
     scale_v_prediction_loss_like_noise_prediction,
 )
+from library.device_utils import clean_memory, init_ipex
 
+init_ipex()
 
 def train(args):
     train_util.verify_training_args(args)

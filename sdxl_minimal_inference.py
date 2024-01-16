@@ -8,20 +8,19 @@ import os
 import random
 
 import numpy as np
-import torch
-from einops import repeat
-
-from library.device_utils import get_preferred_device_name, init_ipex
-
-init_ipex()
 import open_clip
+import torch
 from diffusers import EulerDiscreteScheduler
+from einops import repeat
 from PIL import Image
 from tqdm import tqdm
 from transformers import CLIPTokenizer
 
 import networks.lora as lora
 from library import sdxl_model_util
+from library.device_utils import get_preferred_device_name, init_ipex
+
+init_ipex()
 
 # scheduler: このあたりの設定はSD1/2と同じでいいらしい
 # scheduler: The settings around here seem to be the same as SD1/2

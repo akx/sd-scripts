@@ -7,15 +7,11 @@ from types import SimpleNamespace
 
 import toml
 import torch
-from tqdm import tqdm
-
-from library.device_utils import clean_memory, init_ipex
-
-init_ipex()
 from accelerate.utils import set_seed
 from diffusers import ControlNetModel, DDPMScheduler
 from safetensors.torch import load_file
 from torch.nn.parallel import DistributedDataParallel as DDP
+from tqdm import tqdm
 
 import library.config_util as config_util
 import library.custom_train_functions as custom_train_functions
@@ -31,6 +27,9 @@ from library.custom_train_functions import (
     apply_snr_weight,
     pyramid_noise_like,
 )
+from library.device_utils import clean_memory, init_ipex
+
+init_ipex()
 
 
 # TODO 他のスクリプトと共通化する

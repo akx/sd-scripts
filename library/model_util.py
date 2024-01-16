@@ -4,12 +4,8 @@
 import math
 import os
 
-import torch
-
-from library.device_utils import init_ipex
-
-init_ipex()
 import diffusers
+import torch
 from diffusers import (  # , UNet2DConditionModel
     AutoencoderKL,
     DDIMScheduler,
@@ -18,7 +14,10 @@ from diffusers import (  # , UNet2DConditionModel
 from safetensors.torch import load_file, save_file
 from transformers import CLIPTextConfig, CLIPTextModel, CLIPTokenizer
 
+from library.device_utils import init_ipex
 from library.original_unet import UNet2DConditionModel
+
+init_ipex()
 
 # DiffUsers版StableDiffusionのモデルパラメータ
 NUM_TRAIN_TIMESTEPS = 1000

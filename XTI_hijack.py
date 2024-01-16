@@ -1,11 +1,11 @@
+from typing import Dict, Optional, Tuple, Union
+
 import torch
 
 from library.device_utils import init_ipex
+from library.original_unet import SampleOutput
 
 init_ipex()
-from typing import Dict, Optional, Tuple, Union
-
-from library.original_unet import SampleOutput
 
 
 def unet_forward_XTI(
