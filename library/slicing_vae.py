@@ -13,19 +13,15 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-from dataclasses import dataclass
 from typing import Optional, Tuple, Union
 
-import numpy as np
 import torch
 import torch.nn as nn
-
-
 from diffusers.configuration_utils import ConfigMixin, register_to_config
+from diffusers.models.autoencoder_kl import AutoencoderKLOutput
 from diffusers.models.modeling_utils import ModelMixin
 from diffusers.models.unet_2d_blocks import UNetMidBlock2D, get_down_block, get_up_block
 from diffusers.models.vae import DecoderOutput, DiagonalGaussianDistribution
-from diffusers.models.autoencoder_kl import AutoencoderKLOutput
 
 
 def slice_h(x, num_slices):

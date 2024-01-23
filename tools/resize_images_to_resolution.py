@@ -1,11 +1,12 @@
-import glob
-import os
-import cv2
 import argparse
-import shutil
+import glob
 import math
-from PIL import Image
+import os
+import shutil
+
+import cv2
 import numpy as np
+from PIL import Image
 
 
 def resize_images(src_img_folder, dst_img_folder, max_resolution="512x512", divisible_by=2, interpolation=None, save_as_png=False, copy_associated_files=False):

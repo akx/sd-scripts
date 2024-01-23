@@ -5,11 +5,12 @@ import bisect
 import math
 import random
 from typing import Any, Dict, List, Mapping, Optional, Union
-from diffusers import UNet2DConditionModel
+
 import numpy as np
+import torch
+from diffusers import UNet2DConditionModel
 from tqdm import tqdm
 from transformers import CLIPTextModel
-import torch
 
 
 def make_unet_conversion_map() -> Dict[str, str]:
@@ -471,10 +472,11 @@ class LoRANetwork(torch.nn.Module):
 
 if __name__ == "__main__":
     # sample code to use LoRANetwork
-    import os
     import argparse
-    from diffusers import StableDiffusionPipeline, StableDiffusionXLPipeline
+    import os
+
     import torch
+    from diffusers import StableDiffusionPipeline, StableDiffusionXLPipeline
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 

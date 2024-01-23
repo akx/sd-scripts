@@ -12,7 +12,8 @@
 import math
 import os
 import random
-from typing import List, Tuple, Union
+from typing import List
+
 import torch
 from torch import nn
 
@@ -204,7 +205,7 @@ def create_network(multiplier, network_dim, network_alpha, vae, text_encoder, un
 def create_network_from_weights(multiplier, file, vae, text_encoder, unet, weights_sd=None, for_inference=False, **kwargs):
     if weights_sd is None:
         if os.path.splitext(file)[1] == ".safetensors":
-            from safetensors.torch import load_file, safe_open
+            from safetensors.torch import load_file
 
             weights_sd = load_file(file)
         else:
@@ -429,6 +430,7 @@ class DyLoRANetwork(torch.nn.Module):
 
         if os.path.splitext(file)[1] == ".safetensors":
             from safetensors.torch import save_file
+
             from library import train_util
 
             # Precalculate model hashes to save time on indexing

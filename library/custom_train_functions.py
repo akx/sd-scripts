@@ -1,8 +1,9 @@
-import torch
 import argparse
 import random
 import re
 from typing import List, Optional, Union
+
+import torch
 
 
 def prepare_scheduler_for_custom_training(noise_scheduler, device):

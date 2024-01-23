@@ -3,48 +3,37 @@
 
 import argparse
 import gc
-import json
 import math
 import os
 import random
-import time
 from multiprocessing import Value
-from types import SimpleNamespace
-import toml
 
-from tqdm import tqdm
+import toml
 import torch
+from tqdm import tqdm
 
 from library.ipex_interop import init_ipex
 
 init_ipex()
 
-from torch.nn.parallel import DistributedDataParallel as DDP
-from accelerate.utils import set_seed
 import accelerate
-from diffusers import DDPMScheduler, ControlNetModel
-from safetensors.torch import load_file
-from library import sai_model_spec, sdxl_model_util, sdxl_original_unet, sdxl_train_util
+from accelerate.utils import set_seed
+from diffusers import DDPMScheduler
 
-import library.model_util as model_util
-import library.train_util as train_util
 import library.config_util as config_util
-from library.config_util import (
-    ConfigSanitizer,
-    BlueprintGenerator,
-)
-import library.huggingface_util as huggingface_util
 import library.custom_train_functions as custom_train_functions
+import library.huggingface_util as huggingface_util
+import library.train_util as train_util
+import networks.control_net_lllite_for_train as control_net_lllite_for_train
+from library import sai_model_spec, sdxl_model_util, sdxl_train_util
+from library.config_util import BlueprintGenerator, ConfigSanitizer
 from library.custom_train_functions import (
     add_v_prediction_like_loss,
+    apply_debiased_estimation,
     apply_snr_weight,
     prepare_scheduler_for_custom_training,
-    pyramid_noise_like,
-    apply_noise_offset,
     scale_v_prediction_loss_like_noise_prediction,
-    apply_debiased_estimation,
 )
-import networks.control_net_lllite_for_train as control_net_lllite_for_train
 
 
 # TODO 他のスクリプトと共通化する

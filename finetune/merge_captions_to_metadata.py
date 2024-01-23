@@ -1,10 +1,13 @@
 import argparse
 import json
+import os
 from pathlib import Path
 from typing import List
+
 from tqdm import tqdm
+
 import library.train_util as train_util
-import os
+
 
 def main(args):
   assert not args.recursive or (args.recursive and args.full_path), "recursive requires full_path / recursiveはfull_pathと同時に指定してください"

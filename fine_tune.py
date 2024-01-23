@@ -6,10 +6,10 @@ import gc
 import math
 import os
 from multiprocessing import Value
-import toml
 
-from tqdm import tqdm
+import toml
 import torch
+from tqdm import tqdm
 
 from library.ipex_interop import init_ipex
 
@@ -18,19 +18,16 @@ init_ipex()
 from accelerate.utils import set_seed
 from diffusers import DDPMScheduler
 
-import library.train_util as train_util
 import library.config_util as config_util
-from library.config_util import (
-    ConfigSanitizer,
-    BlueprintGenerator,
-)
 import library.custom_train_functions as custom_train_functions
+import library.train_util as train_util
+from library.config_util import BlueprintGenerator, ConfigSanitizer
 from library.custom_train_functions import (
+    apply_debiased_estimation,
     apply_snr_weight,
     get_weighted_text_embeddings,
     prepare_scheduler_for_custom_training,
     scale_v_prediction_loss_like_noise_prediction,
-    apply_debiased_estimation,
 )
 
 

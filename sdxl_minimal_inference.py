@@ -6,23 +6,23 @@ import datetime
 import math
 import os
 import random
-from einops import repeat
+
 import numpy as np
 import torch
+from einops import repeat
 
 from library.ipex_interop import init_ipex
 
 init_ipex()
 
-from tqdm import tqdm
-from transformers import CLIPTokenizer
+import open_clip
 from diffusers import EulerDiscreteScheduler
 from PIL import Image
-import open_clip
-from safetensors.torch import load_file
+from tqdm import tqdm
+from transformers import CLIPTokenizer
 
-from library import model_util, sdxl_model_util
 import networks.lora as lora
+from library import sdxl_model_util
 
 # scheduler: このあたりの設定はSD1/2と同じでいいらしい
 # scheduler: The settings around here seem to be the same as SD1/2

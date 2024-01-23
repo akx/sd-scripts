@@ -1,0 +1,4 @@
+[extend-per-file-ignores]
+# Ignore all vendored code
+"finetune/blip/*" = ["ALL"]
+"library/ipex/*" = ["ALL"]

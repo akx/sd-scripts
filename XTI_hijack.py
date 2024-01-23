@@ -1,9 +1,9 @@
 import torch
+
 from library.ipex_interop import init_ipex
 
 init_ipex()
-from typing import Union, List, Optional, Dict, Any, Tuple
-from diffusers.models.unet_2d_condition import UNet2DConditionOutput
+from typing import Dict, Optional, Tuple, Union
 
 from library.original_unet import SampleOutput
 

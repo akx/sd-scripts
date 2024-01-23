@@ -4,66 +4,61 @@ import argparse
 import ast
 import asyncio
 import datetime
-import importlib
-import json
-import pathlib
-import re
-import shutil
-import time
-from typing import (
-    Dict,
-    List,
-    NamedTuple,
-    Optional,
-    Sequence,
-    Tuple,
-    Union,
-)
-from accelerate import Accelerator, InitProcessGroupKwargs, DistributedDataParallelKwargs
 import gc
 import glob
+import hashlib
+import importlib
+import json
 import math
 import os
+import pathlib
 import random
-import hashlib
+import re
+import shutil
 import subprocess
+import time
 from io import BytesIO
-import toml
+from typing import Dict, List, NamedTuple, Optional, Sequence, Tuple, Union
 
-from tqdm import tqdm
+import cv2
+import numpy as np
+import safetensors.torch
+import toml
 import torch
-from torch.nn.parallel import DistributedDataParallel as DDP
-from torch.optim import Optimizer
-from torchvision import transforms
-from transformers import CLIPTokenizer, CLIPTextModel, CLIPTextModelWithProjection
 import transformers
-from diffusers.optimization import SchedulerType, TYPE_TO_SCHEDULER_FUNCTION
+from accelerate import (
+    Accelerator,
+    DistributedDataParallelKwargs,
+    InitProcessGroupKwargs,
+)
 from diffusers import (
-    StableDiffusionPipeline,
+    AutoencoderKL,
+    DDIMScheduler,
     DDPMScheduler,
-    EulerAncestralDiscreteScheduler,
     DPMSolverMultistepScheduler,
     DPMSolverSinglestepScheduler,
-    LMSDiscreteScheduler,
-    PNDMScheduler,
-    DDIMScheduler,
+    EulerAncestralDiscreteScheduler,
     EulerDiscreteScheduler,
     HeunDiscreteScheduler,
-    KDPM2DiscreteScheduler,
     KDPM2AncestralDiscreteScheduler,
-    AutoencoderKL,
+    KDPM2DiscreteScheduler,
+    LMSDiscreteScheduler,
+    PNDMScheduler,
+    StableDiffusionPipeline,
 )
-from library import custom_train_functions
-from library.original_unet import UNet2DConditionModel
+from diffusers.optimization import TYPE_TO_SCHEDULER_FUNCTION, SchedulerType
 from huggingface_hub import hf_hub_download
-import numpy as np
 from PIL import Image
-import cv2
-import safetensors.torch
-from library.lpw_stable_diffusion import StableDiffusionLongPromptWeightingPipeline
-import library.model_util as model_util
+from torch.optim import Optimizer
+from torchvision import transforms
+from tqdm import tqdm
+from transformers import CLIPTextModel, CLIPTextModelWithProjection, CLIPTokenizer
+
 import library.huggingface_util as huggingface_util
+import library.model_util as model_util
 import library.sai_model_spec as sai_model_spec
+from library import custom_train_functions
+from library.lpw_stable_diffusion import StableDiffusionLongPromptWeightingPipeline
 
 # from library.attention_processors import FlashAttnProcessor
 # from library.hypernetwork import replace_attentions_for_hypernetwork
@@ -91,7 +86,6 @@ STEP_DIFFUSERS_DIR_NAME = "{}-step{:08d}"
 IMAGE_EXTENSIONS = [".png", ".jpg", ".jpeg", ".webp", ".bmp", ".PNG", ".JPG", ".JPEG", ".WEBP", ".BMP"]
 
 try:
-    import pillow_avif
 
     IMAGE_EXTENSIONS.extend([".avif", ".AVIF"])
 except:
@@ -99,7 +93,6 @@ except:
 
 # JPEG-XL on Linux
 try:
-    from jxlpy import JXLImagePlugin
 
     IMAGE_EXTENSIONS.extend([".jxl", ".JXL"])
 except:
@@ -107,7 +100,6 @@ except:
 
 # JPEG-XL on Windows
 try:
-    import pillow_jxl
 
     IMAGE_EXTENSIONS.extend([".jxl", ".JXL"])
 except:

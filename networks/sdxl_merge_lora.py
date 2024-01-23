@@ -1,13 +1,14 @@
-import math
 import argparse
+import math
 import os
 import time
+
+import lora
 import torch
 from safetensors.torch import load_file, save_file
 from tqdm import tqdm
+
 from library import sai_model_spec, sdxl_model_util, train_util
-import library.model_util as model_util
-import lora
 
 
 def load_state_dict(file_name, dtype):

@@ -1,8 +1,9 @@
 import os
-from typing import Optional, List, Type
-import torch
-from library import sdxl_original_unet
+from typing import List, Optional, Type
 
+import torch
+
+from library import sdxl_original_unet
 
 # input_blocksに適用するかどうか / if True, input_blocks are not applied
 SKIP_INPUT_BLOCKS = False

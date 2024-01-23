@@ -1,16 +1,14 @@
 import argparse
 import os
 import re
-
 from pathlib import Path
+
+import torch
 from PIL import Image
 from tqdm import tqdm
-import torch
-from transformers import AutoProcessor, AutoModelForCausalLM
-from transformers.generation.utils import GenerationMixin
+from transformers import AutoModelForCausalLM, AutoProcessor
 
 import library.train_util as train_util
-
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 

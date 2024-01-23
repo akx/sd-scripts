@@ -1,39 +1,34 @@
 import argparse
 import gc
-import json
 import math
 import os
 import random
-import time
 from multiprocessing import Value
 from types import SimpleNamespace
-import toml
 
-from tqdm import tqdm
+import toml
 import torch
+from tqdm import tqdm
 
 from library.ipex_interop import init_ipex
 
 init_ipex()
 
-from torch.nn.parallel import DistributedDataParallel as DDP
 from accelerate.utils import set_seed
-from diffusers import DDPMScheduler, ControlNetModel
+from diffusers import ControlNetModel, DDPMScheduler
 from safetensors.torch import load_file
+from torch.nn.parallel import DistributedDataParallel as DDP
 
+import library.config_util as config_util
+import library.custom_train_functions as custom_train_functions
+import library.huggingface_util as huggingface_util
 import library.model_util as model_util
 import library.train_util as train_util
-import library.config_util as config_util
-from library.config_util import (
-    ConfigSanitizer,
-    BlueprintGenerator,
-)
-import library.huggingface_util as huggingface_util
-import library.custom_train_functions as custom_train_functions
+from library.config_util import BlueprintGenerator, ConfigSanitizer
 from library.custom_train_functions import (
+    apply_noise_offset,
     apply_snr_weight,
     pyramid_noise_like,
-    apply_noise_offset,
 )
 
 

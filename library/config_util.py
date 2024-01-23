@@ -1,44 +1,28 @@
 import argparse
-from dataclasses import (
-    asdict,
-    dataclass,
-)
 import functools
-import random
-from textwrap import dedent, indent
 import json
+import random
+from dataclasses import asdict, dataclass
 from pathlib import Path
+from textwrap import dedent, indent
 
 # from toolz import curry
-from typing import (
-    List,
-    Optional,
-    Sequence,
-    Tuple,
-    Union,
-)
+from typing import List, Optional, Sequence, Tuple, Union
 
 import toml
 import voluptuous
-from voluptuous import (
-    Any,
-    ExactSequence,
-    MultipleInvalid,
-    Object,
-    Required,
-    Schema,
-)
 from transformers import CLIPTokenizer
+from voluptuous import Any, ExactSequence, MultipleInvalid, Object, Required, Schema
 
 from . import train_util
 from .train_util import (
-    DreamBoothSubset,
-    FineTuningSubset,
-    ControlNetSubset,
-    DreamBoothDataset,
-    FineTuningDataset,
     ControlNetDataset,
+    ControlNetSubset,
     DatasetGroup,
+    DreamBoothDataset,
+    DreamBoothSubset,
+    FineTuningDataset,
+    FineTuningSubset,
 )
 
 

@@ -1,12 +1,12 @@
-from typing import List, NamedTuple, Any
-import numpy as np
+from typing import Any, List, NamedTuple
+
 import cv2
+import numpy as np
 import torch
 from safetensors.torch import load_file
 
-from library.original_unet import UNet2DConditionModel, SampleOutput
-
 import library.model_util as model_util
+from library.original_unet import SampleOutput, UNet2DConditionModel
 
 
 class ControlNetInfo(NamedTuple):

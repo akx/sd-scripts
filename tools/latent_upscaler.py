@@ -4,16 +4,15 @@
 import argparse
 import glob
 import os
+from typing import List
+
 import cv2
-from diffusers import AutoencoderKL
-
-from typing import Dict, List
 import numpy as np
-
 import torch
+from diffusers import AutoencoderKL
+from PIL import Image
 from torch import nn
 from tqdm import tqdm
-from PIL import Image
 
 
 class ResidualBlock(nn.Module):

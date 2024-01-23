@@ -1,21 +1,15 @@
 # text encoder出力のdiskへの事前キャッシュを行う / cache text encoder outputs to disk in advance
 
 import argparse
-import math
-from multiprocessing import Value
 import os
+from multiprocessing import Value
 
-from accelerate.utils import set_seed
 import torch
+from accelerate.utils import set_seed
 from tqdm import tqdm
 
-from library import config_util
-from library import train_util
-from library import sdxl_train_util
-from library.config_util import (
-    ConfigSanitizer,
-    BlueprintGenerator,
-)
+from library import config_util, sdxl_train_util, train_util
+from library.config_util import BlueprintGenerator, ConfigSanitizer
 
 
 def cache_to_disk(args: argparse.Namespace) -> None:
